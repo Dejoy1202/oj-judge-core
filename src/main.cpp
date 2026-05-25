@@ -1,3 +1,5 @@
+#include "compiler.h"
+
 #include <iostream>
 #include<filesystem>
 #include<string>
@@ -32,7 +34,25 @@ int main(int argc, char* argv[]) {
     }
 
     std::cout << "All input files exist." << std::endl;
-    std::cout << "Day 1 check passed" << std::endl;
+
+    std::string executable_path = ".\\sandbox\\main.exe";
+    std::string compile_log_path = ".\\sandbox\\compile.log";
+
+    Compiler compiler;
+    bool compile_success = compiler.compile(
+        source_path,
+        executable_path,
+        compile_log_path
+    );
+
+    if (!compile_success) {
+        std::cout << "Compile failed. Result: CE" << std::endl;
+        std::cout << "See compile log: " << compile_log_path << std::endl;
+        return 1;
+    }
+
+    std::cout << "Compile succeeded" << std::endl;
+    std::cout << "Executable: " << executable_path << std::endl;
 
     return 0;
 }
