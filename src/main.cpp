@@ -1,4 +1,5 @@
 #include "compiler.h"
+#include "runner.h"
 
 #include <iostream>
 #include<filesystem>
@@ -53,6 +54,25 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Compile succeeded" << std::endl;
     std::cout << "Executable: " << executable_path << std::endl;
+
+    std::string output_path = ".\\sandbox\\output.txt";
+    std::string runtime_log_path = ".\\sandbox\\runtime.log";
+
+    Runner runner;
+    bool run_success = runner.run(
+        executable_path, 
+        input_path, output_path, 
+        runtime_log_path);
+
+    if (!run_success) {
+        std::cout << "Run failed. Result: RE" << std::endl;
+        std::cout << "See runtime log: " << runtime_log_path << std::endl;
+        return 1;
+    }
+
+    std::cout << "Run succeeded" << std::endl;
+    std::cout << "Output: " << output_path << std::endl;
+
 
     return 0;
 }

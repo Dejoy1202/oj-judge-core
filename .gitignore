@@ -5,5 +5,7 @@ build/
 *.obj
 *.o
 
+sandbox/output.txt
+
 .vscode/
 .idea/
