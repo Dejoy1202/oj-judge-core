@@ -1,6 +1,11 @@
 #pragma once
 
+#include <string>
+
 class Comparator {
 public:
-    Comparator() = default;
+	bool compare(
+		const std::string& output_path,
+		const std::string& answer_path
+	);
 };

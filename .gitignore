@@ -6,6 +6,8 @@ build/
 *.o
 
 sandbox/output.txt
+sandbox/answer.txt
+
 
 .vscode/
 .idea/

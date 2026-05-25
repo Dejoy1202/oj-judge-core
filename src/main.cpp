@@ -1,9 +1,10 @@
 #include "compiler.h"
 #include "runner.h"
+#include "comparator.h"
 
 #include <iostream>
-#include<filesystem>
-#include<string>
+#include <filesystem>
+#include <string>
 
 int main(int argc, char* argv[]) {
     std::cout << "OJ Judge Core started." << std::endl;
@@ -61,7 +62,8 @@ int main(int argc, char* argv[]) {
     Runner runner;
     bool run_success = runner.run(
         executable_path, 
-        input_path, output_path, 
+        input_path, 
+        output_path, 
         runtime_log_path);
 
     if (!run_success) {
@@ -73,6 +75,19 @@ int main(int argc, char* argv[]) {
     std::cout << "Run succeeded" << std::endl;
     std::cout << "Output: " << output_path << std::endl;
 
+
+    Comparator comparator;
+    bool accepted = comparator.compare(
+        output_path,
+        answer_path
+    );
+
+    if (accepted) {
+        std::cout << "Result: AC\n";
+    }
+    else {
+        std::cout << "Result: WA\n";
+    }
 
     return 0;
 }
